@@ -1,9 +1,75 @@
 {
-  "condos": [],
-  "events": [],
-  "units": [],
-  "staff": [],
-  "gates": [],
-  "customers": [],
+  "condos": [
+    {
+      "id": 1,
+      "name": "Condo 1"
+    },
+    {
+      "id": 2,
+      "name": "Condo 2"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "name": "Event 1",
+      "condo": 1,
+      "time": "2016-01-01",
+      "unit": 1,
+      "staff": 1,
+      "gate": 1,
+      "score": 25
+    },
+    {
+      "id": 2,
+      "name": "Event 2",
+      "condo": 2,
+      "time": "2016-01-01",
+      "unit": 2,
+      "staff": 2,
+      "gate": 2,
+      "score": 25
+    }
+  ],
+  "units": [
+    {
+      "id": 1,
+      "name": "Unit 1"
+    },
+    {
+      "id": 2,
+      "name": "Unit 2"
+    }
+  ],
+  "staff": [
+    {
+      "id": 1,
+      "name": "Staff 1"
+    },
+    {
+      "id": 2,
+      "name": "Staff 2"
+    }
+  ],
+  "gates": [
+    {
+      "id": 1,
+      "name": "Gate 1"
+    },
+    {
+      "id": 2,
+      "name": "Gate 2"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "Customer 1"
+    },
+    {
+      "id": 2,
+      "name": "Customer 2"
+    }
+  ],
   "messages": []
 }
