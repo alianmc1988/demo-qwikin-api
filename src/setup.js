@@ -21,6 +21,7 @@ const writeToFile = (filePath, object) => {
     database.units = units;
     database.staff = staff;
     database.gates = gates;
+    database.customers = initialData.customers;
     writeToFile(filePath, database);
     console.log("Database setup complete");
     return;
