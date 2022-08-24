@@ -1,7 +1,7 @@
 const BaseEntity = require("./BaseEntity");
 
 class Unit extends BaseEntity {
-  constructor({ unitNumber }) {
+  constructor(unitNumber) {
     super();
     this.unitNumber = unitNumber;
   }

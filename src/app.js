@@ -6,6 +6,7 @@ const app = express();
 const { ROOT_URL } = require("./config.js");
 const bodyParser = require("body-parser");
 const errorHandlerMiddleware = require("./middlewares/errorHandlerMiddleware.js");
+require("./setup");
 
 // Middleware
 app.use(cors());
