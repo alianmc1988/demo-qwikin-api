@@ -62,6 +62,10 @@ class EventController {
     req.body = response;
     next();
   }
+
+  static async getResponseFromTwilio(req, _, next) {
+    console.log(req.body);
+  }
 }
 
 module.exports = EventController;

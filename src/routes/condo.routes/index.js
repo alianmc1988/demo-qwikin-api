@@ -5,7 +5,7 @@ router.post("/", CondoController.createCondo, (req, res) => {
   return res.status(201).json(req.body);
 });
 
-router.get("/", CondoController.getAllCondos, (req, res) => {
+router.get("/condolist", CondoController.getAllCondos, (req, res) => {
   return res.status(200).json(req.body);
 });
 
