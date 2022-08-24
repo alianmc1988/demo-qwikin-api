@@ -1,6 +1,8 @@
+const createId = require("../helpers/createId");
+
 class BaseEntity {
   constructor() {
-    this.id = new Date().getTime().toString();
+    this.id = createId();
   }
 }
 

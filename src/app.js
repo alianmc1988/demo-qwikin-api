@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 // routes
+app.use(ROOT_URL, require("./routes/initial.js"));
 app.use(`${ROOT_URL}/condo`, require("./routes/condo.routes"));
 app.use(`${ROOT_URL}/event`, require("./routes/event.routes"));
 app.use(`${ROOT_URL}/customer`, require("./routes/customer.routes"));

@@ -1,9 +1,45 @@
 {
-  "condos": [],
+  "condos": [
+    {
+      "id": "0.w4v5i2oe5jq0",
+      "name": "Condo 1"
+    },
+    {
+      "id": "0.w27ycpjb85f0",
+      "name": "Condo 2"
+    }
+  ],
   "events": [],
-  "units": [],
-  "staff": [],
-  "gates": [],
+  "units": [
+    {
+      "id": "0.xqxnvxa4aw",
+      "unitNumber": 1
+    },
+    {
+      "id": "0.86s24o8eaad",
+      "unitNumber": 2
+    }
+  ],
+  "staff": [
+    {
+      "id": "0.vso98um0tu",
+      "name": "John"
+    },
+    {
+      "id": "0.3e6sr8zam8w",
+      "name": "Jane"
+    }
+  ],
+  "gates": [
+    {
+      "id": "0.75ngz2hygi7",
+      "gateName": "Gate 1"
+    },
+    {
+      "id": "0.jbmscr9h92n",
+      "gateName": "Gate 2"
+    }
+  ],
   "customers": [],
   "messages": []
 }
