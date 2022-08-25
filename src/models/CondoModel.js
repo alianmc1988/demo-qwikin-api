@@ -32,9 +32,10 @@ class CondoModel {
       condo: null,
       error: null,
     };
+    console.log(condo);
     try {
       db.condos.push(condo);
-      response = condo;
+      response = this.getOne(condo.id);
     } catch (error) {
       response.error = error;
     }

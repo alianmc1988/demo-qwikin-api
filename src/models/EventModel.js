@@ -27,14 +27,14 @@ class EventModel {
     return response;
   }
 
-  static create(event) {
+  static async create(event) {
     let response = {
-      event: null,
+      event: {},
       error: null,
     };
     try {
-      db.events.push(event);
-      response = event;
+      await Promise.resolve(db.events.push(event));
+      response.event = this.getOne(event.id);
     } catch (error) {
       response.error = error;
     }

@@ -34,7 +34,7 @@ class UnitModel {
     };
     try {
       db.units.push(unit);
-      response = unit;
+      response = this.getOne(unit.id);
     } catch (error) {
       response.error = error;
     }

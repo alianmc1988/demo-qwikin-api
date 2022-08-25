@@ -1,54 +1,62 @@
 {
   "condos": [
     {
-      "id": "0.jogcoo3gtsi",
+      "id": "0.xy52anyyrk",
       "name": "Condo 1"
     },
     {
-      "id": "0.hby9t7xe06",
+      "id": "0.u96q6fl252",
       "name": "Condo 2"
     }
   ],
   "events": [],
   "units": [
     {
-      "id": "0.90h8frk70ga",
+      "id": "0.y0jlx4n20uc",
       "unitNumber": 1
     },
     {
-      "id": "0.mkqv4w40x08",
+      "id": "0.28rnw68nz6w",
       "unitNumber": 2
     }
   ],
   "staff": [
     {
-      "id": "0.1kin74l5v22",
+      "id": "0.u2ox8i9cnra",
       "name": "John"
     },
     {
-      "id": "0.b4n4lx7h4qd",
+      "id": "0.0da2s43yz8b9",
       "name": "Jane"
     }
   ],
   "gates": [
     {
-      "id": "0.i989n8zwcg",
+      "id": "0.l4r62fidurc",
       "gateName": "Gate 1"
     },
     {
-      "id": "0.5qychnjvwy4",
+      "id": "0.7qumxkfywaj",
       "gateName": "Gate 2"
     }
   ],
   "customers": [
     {
-      "id": "0.d3harm8kbbt",
+      "id": "0.w75xu73xa1o",
       "name": "Customer 1",
       "phone": "+5511937015522"
     },
     {
-      "id": "0.y2cjalcw9fr",
+      "id": "0.xqkcesykd8",
       "name": "Customer 2",
+      "phone": "+5511937015522"
+    },
+    {
+      "id": "0.154cuwhl85u",
+      "name": {
+        "name": "pepe",
+        "phone": "+5511937015522"
+      },
       "phone": "+5511937015522"
     }
   ],

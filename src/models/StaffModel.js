@@ -34,7 +34,7 @@ class StaffModel {
     };
     try {
       db.staffs.push(staff);
-      response = staff;
+      response = this.getOne(staff.id);
     } catch (error) {
       response.error = error;
     }

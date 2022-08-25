@@ -16,28 +16,40 @@ class CustomerModel {
 
   static getOne(id) {
     let response = {
-      customer: null,
+      customer: {},
       error: null,
     };
     try {
-      response = db.customers.find((customer) => customer.id === id);
+      response.customer = {
+        ...db.customers.find((customer) => customer.id === id),
+      };
     } catch (error) {
       response.error = error;
     }
-    return response;
+    return new Promise((resolve, reject) => {
+      if (response.error) {
+        reject(response.error);
+      }
+      resolve(response.customer);
+    });
   }
 
-  static create(customer) {
+  static async create(customer) {
     let response = {
       customer: null,
       error: null,
     };
+
     try {
-      db.customers.push(customer);
-      response = customer;
+      const pushCustomer = new Promise((resolve, reject) => {
+        resolve(db.customers.push(customer));
+      });
+      await pushCustomer;
+      response = await this.getOne(customer.id);
     } catch (error) {
       response.error = error;
     }
+
     return response;
   }
 

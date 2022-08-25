@@ -1,14 +1,16 @@
-const { CustomerService } = require("../services");
+const { CustomerService, EventService } = require("../services");
 const Customer = require("../entities/Customer");
 
 class CustomerController {
   static async createCustomer(req, _, next) {
+    console.log(req);
     const { name } = req.body;
     const customer = new Customer(name);
     const response = await CustomerService.create(customer);
     if (response.error) {
       next(response.error);
     }
+    console.log(response);
     req.body = response;
     next();
   }

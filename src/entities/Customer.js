@@ -1,10 +1,10 @@
 const BaseEntity = require("./BaseEntity");
 
 class Customer extends BaseEntity {
-  constructor(name) {
+  constructor(name, phone) {
     super();
     this.name = name;
-    this.phone = "+5511937015522";
+    this.phone = phone || "+5511937015522";
   }
 }
 

@@ -1,5 +1,7 @@
 const Event = require("../entities/Event");
-const { EventService } = require("../services");
+const Customer = require("../entities/Customer");
+const { EventService, CustomerService, TwilioService } = require("../services");
+const { messagesResponses } = require("../constants");
 
 class EventController {
   static async getAll(req, _, next) {
@@ -22,23 +24,38 @@ class EventController {
   }
 
   static async create(req, _, next) {
-    const { time, condo, customer, unitId, staff, gate, score, message } =
-      req.body;
-    const event = new Event(
+    const { time, condo, unit, staff, gate, score } = req.body;
+    let { customer } = req.body;
+
+    const customerObj = new Customer(customer);
+
+    const customerCreated = await CustomerService.create(customerObj);
+    customer = customerCreated.id;
+    const event = new Event({
       time,
       condo,
-      customer,
-      unitId,
+      unit,
       staff,
       gate,
       score,
-      message
-    );
-    const response = await EventService.create(event);
-    if (response.error) {
-      next(response.error);
+      message,
+      customer,
+    });
+    const eventCreated = await EventService.create(event);
+    if (eventCreated.error) {
+      next(eventCreated.error);
     }
-    req.body = response;
+
+    // Send message to customer
+    const customerPhoneNumbers = customerCreated.phone;
+    const message =
+      messagesResponses[1].message || "Thank you for checking in our condo";
+    const response = await TwilioService.sendSMS({
+      to: customerPhoneNumbers,
+      body: message,
+    });
+    console.log(response);
+    req.body = eventCreated;
     next();
   }
 
@@ -64,7 +81,15 @@ class EventController {
   }
 
   static async getResponseFromTwilio(req, _, next) {
-    console.log(req.body);
+    const { Body, From } = req.body;
+    console.log(Body, From);
+    await TwilioService.sendSMS({
+      to: From,
+      body: messagesResponses[2].message,
+    });
+    const response = { Body, From };
+    req.body = response;
+    next();
   }
 }
 

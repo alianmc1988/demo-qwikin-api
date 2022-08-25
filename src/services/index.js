@@ -5,4 +5,5 @@ module.exports = {
   GateService: require("./gateService"),
   StaffService: require("./staffService"),
   UnitService: require("./unitService"),
+  TwilioService: require("./twilioService/smsService"),
 };

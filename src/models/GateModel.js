@@ -34,7 +34,7 @@ class GateModel {
     };
     try {
       db.gates.push(gate);
-      response = gate;
+      response = this.getOne(gate.id);
     } catch (error) {
       response.error = error;
     }

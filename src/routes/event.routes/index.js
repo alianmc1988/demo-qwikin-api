@@ -6,8 +6,16 @@ router.post("/checkin", EventController.create, (req, res) => {
 });
 
 // Get what twilio sends
-router.get("/checkin", EventController.getResponseFromTwilio, (req, res) => {
-  res.status(200).json({ message: "success" });
+router.post(
+  "/checkin/response-twilio",
+  EventController.getResponseFromTwilio,
+  (req, res) => {
+    res.status(200).json({ message: "success" });
+  }
+);
+
+router.get("/", EventController.getAll, (req, res) => {
+  res.status(200).json(req.body);
 });
 
 module.exports = router;

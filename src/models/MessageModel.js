@@ -8,7 +8,7 @@ class MessageModel {
   }
   static create(message) {
     db.messages.push(message);
-    return message;
+    return this.getOne(message.id);
   }
   static update(id, message) {
     const index = db.messages.findIndex((message) => message.id === id);
