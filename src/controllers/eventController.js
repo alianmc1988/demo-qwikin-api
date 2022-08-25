@@ -46,10 +46,11 @@ class EventController {
     }
 
     // Send message to customer
-    const customerPhoneNumbers = customerCreated.phone;
+    const customerPhoneNumbers = customerCreated.name.phone;
     const message =
       messagesResponses[1].message || "Thank you for checking in our condo";
     let response;
+    console.log(customerPhoneNumbers);
     try {
       response = await TwilioService.sendSMS({
         to: customerPhoneNumbers,

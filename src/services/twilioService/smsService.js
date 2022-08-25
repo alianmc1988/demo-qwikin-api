@@ -9,8 +9,8 @@ const client = require("twilio")(
   authToken
 );
 // const MessagingResponse = require("twilio").twiml.MessagingResponse;
-const CustomerModel = require("../../models/CustomerModel");
-const EventModel = require("../../models/EventModel");
+// const CustomerModel = require("../../models/CustomerModel");
+// const EventModel = require("../../models/EventModel");
 class TwilioService {
   static async sendSMS({ to, body }) {
     const response = await client.messages.create({
