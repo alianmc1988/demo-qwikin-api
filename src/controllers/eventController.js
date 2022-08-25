@@ -61,6 +61,7 @@ class EventController {
     }
     console.log(response);
     req.body = eventCreated;
+    req.body = { ...req.body, twilioResponse: response };
     next();
   }
 
