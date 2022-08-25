@@ -38,7 +38,6 @@ class EventController {
       staff,
       gate,
       score,
-      message,
       customer,
     });
     const eventCreated = await EventService.create(event);
@@ -50,10 +49,15 @@ class EventController {
     const customerPhoneNumbers = customerCreated.phone;
     const message =
       messagesResponses[1].message || "Thank you for checking in our condo";
-    const response = await TwilioService.sendSMS({
-      to: customerPhoneNumbers,
-      body: message,
-    });
+    let response;
+    try {
+      response = await TwilioService.sendSMS({
+        to: customerPhoneNumbers,
+        body: message,
+      });
+    } catch (error) {
+      console.log("Error in sending message", error.message);
+    }
     console.log(response);
     req.body = eventCreated;
     next();
