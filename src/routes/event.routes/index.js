@@ -9,7 +9,7 @@ router.post("/checkin/pass/:id", EventController.create, (req, res) => {
 router.post("/checkin/create-pass", EventController.checkinPass);
 
 router.post(
-  "/checkin/create-pass",
+  "/checkin/response-twilio",
   EventController.getResponseFromTwilio,
   (req, res) => {
     res.status(200).json(req.body);
