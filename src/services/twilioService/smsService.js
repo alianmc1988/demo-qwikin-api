@@ -18,6 +18,16 @@ class TwilioService {
       from: QWIKIN_PHONE_NUMBER,
       to,
     });
+
+
+    print('TESTING')
+
+    print(response.body);
+    print(response.to);
+    print(response.from);
+    print(response.dateSent);
+    print(response.dateCreated);
+
     return response;
   }
 
