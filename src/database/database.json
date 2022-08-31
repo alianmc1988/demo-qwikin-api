@@ -61,5 +61,15 @@
     }
   ],
   "messages": [],
-  "ratings": []
+  "ratings": [
+    {
+      "id": "dasdasdasdasd",
+      "score": 5,
+      "condoName": "Condo 1",
+      "unitNumber": 1,
+      "staffName": "John",
+      "gateName": "Gate 1",
+      "name": "Joao"
+    }
+  ]
 }
