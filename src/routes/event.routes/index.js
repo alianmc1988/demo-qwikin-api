@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const EventController = require("../../controllers/eventController.js");
 
-router.post("/checkin", EventController.create, (req, res) => {
+router.post("/checkin/pass/:id", EventController.create, (req, res) => {
   res.status(201).json(req.body);
 });
 

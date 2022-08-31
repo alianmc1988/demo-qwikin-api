@@ -68,7 +68,7 @@ class EventController {
   // }
 
   static async create(req, _, next) {
-    const { id } = req.body;
+    const { id } = req.params;
 
     const eventFounded = db.events.find((event) => event.id === id);
     console.log(eventFounded);
