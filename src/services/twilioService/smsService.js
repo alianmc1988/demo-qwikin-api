@@ -20,13 +20,13 @@ class TwilioService {
     });
 
 
-    print('TESTING')
+    console.log('TESTING')
 
-    print(response.body);
-    print(response.to);
-    print(response.from);
-    print(response.dateSent);
-    print(response.dateCreated);
+    console.log(response.body);
+    console.log(response.to);
+    console.log(response.from);
+    console.log(response.dateSent);
+    console.log(response.dateCreated);
 
     return response;
   }
