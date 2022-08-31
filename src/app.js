@@ -22,6 +22,7 @@ app.use(`${ROOT_URL}/customer`, require("./routes/customer.routes"));
 app.use(`${ROOT_URL}/gate`, require("./routes/gate.routes"));
 app.use(`${ROOT_URL}/staff`, require("./routes/staff.routes"));
 app.use(`${ROOT_URL}/unit`, require("./routes/unit.routes"));
+app.use(`${ROOT_URL}/ratings`, require("./routes/scoresRoutes.js"));
 
 // Error handling
 app.use(errorHandlerMiddleware);

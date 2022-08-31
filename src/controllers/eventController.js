@@ -4,6 +4,7 @@ const { EventService, CustomerService, TwilioService } = require("../services");
 const { messagesResponses } = require("../constants");
 const Pass = require("../entities/PassEntity");
 const db = require("../database/database.json");
+const RaitingsEntity = require("../entities/RatingEntity");
 
 class EventController {
   static async getAll(req, _, next) {
@@ -108,7 +109,7 @@ class EventController {
   }
 
   static async update(req, _, next) {
-    const { id } = req.params;
+    const body = req.body;
     const event = new Event(req.body);
     const response = await EventService.update(id, event);
     if (response.error) {
@@ -131,10 +132,31 @@ class EventController {
   static async getResponseFromTwilio(req, _, next) {
     const { Body, From } = req.body;
     console.log(Body, From);
+
+    const eventFounded = db.events.find((event) => event.phoneNumber === From);
+
     await TwilioService.sendSMS({
       to: From,
       body: messagesResponses[2].message,
     });
+
+    gname = eventFounded.guestName;
+    unit = eventFounded.unitNumber;
+    condo = eventFounded.condoName;
+    phoneNumber = eventFounded.phoneNumber;
+    score = Body;
+
+    const neeScore = new RaitingsEntity(
+      gname,
+      condo,
+      "gate 1",
+      score,
+      "staff",
+      unit
+    );
+
+    const scoreCreated = db.scores.push(neeScore);
+
     const response = { Body, From };
     req.body = response;
     next();
