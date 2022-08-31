@@ -2,6 +2,8 @@ const Event = require("../entities/Event");
 const Customer = require("../entities/Customer");
 const { EventService, CustomerService, TwilioService } = require("../services");
 const { messagesResponses } = require("../constants");
+const Pass = require("../entities/PassEntity");
+const db = require("../database/database.json");
 
 class EventController {
   static async getAll(req, _, next) {
@@ -63,6 +65,20 @@ class EventController {
     req.body = eventCreated;
     req.body = { ...req.body, twilioResponse: response };
     next();
+  }
+
+  static async checkinPass(req, res) {
+    const { guestName, unitNumber, condoName, phoneNumber } = req.body;
+
+    const passToCreate = new Pass(
+      guestName,
+      unitNumber,
+      condoName,
+      phoneNumber
+    );
+
+    const passCreated = db.events.push(passToCreate);
+    res.status(201).json(passToCreate);
   }
 
   static async update(req, _, next) {
