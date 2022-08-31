@@ -25,30 +25,55 @@ class EventController {
     next();
   }
 
+  // static async create(req, _, next) {
+  //   const { time, condo, unit, staff, gate, score } = req.body;
+  //   let { customer } = req.body;
+
+  //   const customerObj = new Customer(customer);
+
+  //   const customerCreated = await CustomerService.create(customerObj);
+  //   customer = customerCreated.id;
+  //   const event = new Event({
+  //     time,
+  //     condo,
+  //     unit,
+  //     staff,
+  //     gate,
+  //     score,
+  //     customer,
+  //   });
+  //   const eventCreated = await EventService.create(event);
+  //   if (eventCreated.error) {
+  //     next(eventCreated.error);
+  //   }
+
+  //   // Send message to customer
+  //   const customerPhoneNumbers = customerCreated.name.phone;
+  //   const message =
+  //     messagesResponses[1].message || "Thank you for checking in our condo";
+  //   let response;
+  //   console.log(customerPhoneNumbers);
+  //   try {
+  //     response = await TwilioService.sendSMS({
+  //       to: customerPhoneNumbers,
+  //       body: message,
+  //     });
+  //   } catch (error) {
+  //     console.log("Error in sending message", error.message);
+  //   }
+  //   console.log(response);
+  //   req.body = eventCreated;
+  //   req.body = { ...req.body, twilioResponse: response };
+  //   next();
+  // }
+
   static async create(req, _, next) {
-    const { time, condo, unit, staff, gate, score } = req.body;
-    let { customer } = req.body;
+    const { id } = req.body;
 
-    const customerObj = new Customer(customer);
-
-    const customerCreated = await CustomerService.create(customerObj);
-    customer = customerCreated.id;
-    const event = new Event({
-      time,
-      condo,
-      unit,
-      staff,
-      gate,
-      score,
-      customer,
-    });
-    const eventCreated = await EventService.create(event);
-    if (eventCreated.error) {
-      next(eventCreated.error);
-    }
-
+    const eventFounded = db.events.find((event) => event.id === id);
+    console.log(eventFounded);
     // Send message to customer
-    const customerPhoneNumbers = customerCreated.name.phone;
+    const customerPhoneNumbers = eventFounded.phoneNumber;
     const message =
       messagesResponses[1].message || "Thank you for checking in our condo";
     let response;
@@ -62,7 +87,6 @@ class EventController {
       console.log("Error in sending message", error.message);
     }
     console.log(response);
-    req.body = eventCreated;
     req.body = { ...req.body, twilioResponse: response };
     next();
   }
