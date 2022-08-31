@@ -25,11 +25,6 @@ class TwilioService {
   static async getResponseFromTwilio(req) {
     const { Body, From } = req.body;
 
-    console.log('TESTING')
-    console.log(req.body)
-    console.log(req.data)
-    console.log(req.params)
-
     return { Body, From };
   }
 }
