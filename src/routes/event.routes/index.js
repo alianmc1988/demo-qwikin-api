@@ -8,7 +8,7 @@ router.post("/checkin", EventController.create, (req, res) => {
 // Get what twilio sends
 router.post("/checkin/create-pass", EventController.checkinPass);
 
-router.get("/", EventController.getAll, (req, res) => {
+router.get("/list-pass", EventController.getAll, (req, res) => {
   res.status(200).json(req.body);
 });
 
