@@ -86,8 +86,10 @@ class EventController {
     } catch (error) {
       console.log("Error in sending message", error.message);
     }
+
+    eventFounded["score"] = req.body.score || 0;
     console.log(response);
-    req.body = { ...req.body, twilioResponse: response };
+    req.body = { ...req.body, twilioResponse: response, eventFounded };
     next();
   }
 
