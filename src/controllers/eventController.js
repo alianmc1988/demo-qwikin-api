@@ -130,6 +130,7 @@ class EventController {
   }
 
   static async getResponseFromTwilio(req, _, next) {
+    console.log(req);
     const { Body, From } = req.body;
     console.log(Body, From);
 
