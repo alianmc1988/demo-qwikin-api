@@ -19,20 +19,17 @@ class TwilioService {
       to,
     });
 
-
-    console.log('TESTING')
-
-    console.log(response.body);
-    console.log(response.to);
-    console.log(response.from);
-    console.log(response.dateSent);
-    console.log(response.dateCreated);
-
     return response;
   }
 
   static async getResponseFromTwilio(req) {
     const { Body, From } = req.body;
+
+    console.log('TESTING')
+    console.log(req.body)
+    console.log(req.data)
+    console.log(req.params)
+
     return { Body, From };
   }
 }
