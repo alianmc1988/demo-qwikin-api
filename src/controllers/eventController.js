@@ -130,15 +130,10 @@ class EventController {
   }
 
   static async getResponseFromTwilio(req, _, next) {
-    console.log(req);
-    console.log(req.params);
     const { Body, From } = req.body;
-    console.log(Body, From);
 
-    console.log("TESTING");
-    console.log(req.body);
-    console.log(req.data);
-    console.log(req.params);
+    console.log("==========================TESTING==========================");
+    console.log("The body from Twilio: ", Body, "The Sender", From);
 
     const eventFounded = db.events.find((event) => event.phoneNumber === From);
 
@@ -147,11 +142,11 @@ class EventController {
       body: messagesResponses[2].message,
     });
 
-    gname = eventFounded.guestName;
-    unit = eventFounded.unitNumber;
-    condo = eventFounded.condoName;
-    phoneNumber = eventFounded.phoneNumber;
-    score = Body;
+    const gname = eventFounded.guestName;
+    const unit = eventFounded.unitNumber;
+    const condo = eventFounded.condoName;
+    const phoneNumber = eventFounded.phoneNumber;
+    const score = Body;
 
     const neeScore = new RaitingsEntity(
       gname,
@@ -162,10 +157,7 @@ class EventController {
       unit
     );
 
-    const scoreCreated = db.scores.push(neeScore);
-
-    const response = { Body, From };
-    req.body = response;
+    db.scores.push(neeScore);
     next();
   }
 }
