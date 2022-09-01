@@ -1,3 +1,4 @@
+const MessagingResponse = require("twilio").twiml.MessagingResponse;
 const Event = require("../entities/Event");
 const Customer = require("../entities/Customer");
 const { EventService, CustomerService, TwilioService } = require("../services");
@@ -129,7 +130,7 @@ class EventController {
     next();
   }
 
-  static async getResponseFromTwilio(req, _, next) {
+  static async getResponseFromTwilio(req, res) {
     const { Body, From } = req.body;
 
     console.log("==========================TESTING==========================");
@@ -137,15 +138,9 @@ class EventController {
 
     const eventFounded = db.events.find((event) => event.phoneNumber === From);
 
-    await TwilioService.sendSMS({
-      to: From,
-      body: messagesResponses[2].message,
-    });
-
     const gname = eventFounded.guestName;
     const unit = eventFounded.unitNumber;
     const condo = eventFounded.condoName;
-    const phoneNumber = eventFounded.phoneNumber;
     const score = Body;
 
     const neeScore = new RaitingsEntity(
@@ -158,7 +153,9 @@ class EventController {
     );
 
     db.scores.push(neeScore);
-    next();
+    const twiml = new MessagingResponse();
+    twiml.message(messagesResponses[2].message);
+    res.send(twiml.toString());
   }
 }
 
