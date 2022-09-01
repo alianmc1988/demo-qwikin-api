@@ -98,13 +98,12 @@ class EventController {
   static async checkinPass(req, res) {
     const { guestName, unitNumber, condoName, phoneNumber } = req.body;
 
-    const passToCreate = new Pass(
+    const passToCreate = {
       guestName,
       unitNumber,
       condoName,
-      phoneNumber
-    );
-
+      phoneNumber,
+    };
     db.events.push(passToCreate);
     res.status(201).json(passToCreate);
   }
