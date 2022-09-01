@@ -99,6 +99,7 @@ class EventController {
     const { guestName, unitNumber, condoName, phoneNumber } = req.body;
 
     const passToCreate = {
+      id: new Date().getTime(),
       guestName,
       unitNumber,
       condoName,
@@ -141,6 +142,7 @@ class EventController {
 
     console.log("The event founded: ", eventFounded);
     const raiting = {
+      id: new Date().getTime(),
       guestName: eventFounded.guestName,
       unit: eventFounded.unitNumber,
       condo: eventFounded.condoName,
