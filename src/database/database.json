@@ -9,17 +9,7 @@
       "name": "Condo 2"
     }
   ],
-  "events": [
-    {
-      "id": "0.1j4q6fl252",
-      "guestName": "Event 1",
-      "phoneNumber": "+5511937015522"
-    },
-    {
-      "id": "0.1j4q6fl252",
-      "name": "Event 2"
-    }
-  ],
+  "events": [],
   "units": [
     {
       "id": "0.y0jlx4n20uc",

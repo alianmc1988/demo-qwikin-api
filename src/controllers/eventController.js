@@ -136,32 +136,23 @@ class EventController {
     console.log("==========================TESTING==========================");
     console.log("The body from Twilio: ", Body, "The Sender", From);
 
-    try {
-      const eventFounded = db.events.find(
-        (event) => event.phoneNumber === From
-      );
+    const event = db.events;
+    const twiml = new MessagingResponse();
+    const eventFounded = event.find((event) => event.phoneNumber === From);
 
-      const gname = eventFounded.guestName;
-      const unit = eventFounded.unitNumber;
-      const condo = eventFounded.condoName;
-      const score = Body;
+    console.log("The event founded: ", eventFounded);
+    const raiting = {
+      guestName: eventFounded.guestName,
+      unit: eventFounded.unitNumber,
+      condo: eventFounded.condoName,
+      score: Body,
+    };
 
-      const neeScore = new RaitingsEntity(
-        gname,
-        condo,
-        "gate 1",
-        score,
-        "staff",
-        unit
-      );
-
-      db.ratings.push(neeScore);
-      const twiml = new MessagingResponse();
-      twiml.message(messagesResponses[2].message);
-      res.send(twiml.toString());
-    } catch (error) {
-      console.log(error.message);
-    }
+    console.log("The raiting: ", raiting);
+    db.ratings.push(raiting);
+    console.log("raitings table", db.ratings);
+    twiml.message(messagesResponses[2].message);
+    res.send(twiml.toString());
   }
 }
 
