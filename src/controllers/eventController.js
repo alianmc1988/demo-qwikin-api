@@ -105,7 +105,7 @@ class EventController {
       phoneNumber
     );
 
-    const passCreated = db.events.push(passToCreate);
+    db.events.push(passToCreate);
     res.status(201).json(passToCreate);
   }
 
@@ -136,26 +136,32 @@ class EventController {
     console.log("==========================TESTING==========================");
     console.log("The body from Twilio: ", Body, "The Sender", From);
 
-    const eventFounded = db.events.find((event) => event.phoneNumber === From);
+    try {
+      const eventFounded = db.events.find(
+        (event) => event.phoneNumber === From
+      );
 
-    const gname = eventFounded.guestName;
-    const unit = eventFounded.unitNumber;
-    const condo = eventFounded.condoName;
-    const score = Body;
+      const gname = eventFounded.guestName;
+      const unit = eventFounded.unitNumber;
+      const condo = eventFounded.condoName;
+      const score = Body;
 
-    const neeScore = new RaitingsEntity(
-      gname,
-      condo,
-      "gate 1",
-      score,
-      "staff",
-      unit
-    );
+      const neeScore = new RaitingsEntity(
+        gname,
+        condo,
+        "gate 1",
+        score,
+        "staff",
+        unit
+      );
 
-    db.scores.push(neeScore);
-    const twiml = new MessagingResponse();
-    twiml.message(messagesResponses[2].message);
-    res.send(twiml.toString());
+      db.ratings.push(neeScore);
+      const twiml = new MessagingResponse();
+      twiml.message(messagesResponses[2].message);
+      res.send(twiml.toString());
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }
 
