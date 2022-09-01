@@ -12,6 +12,10 @@ router.post(
   "/checkin/response-twilio",
   EventController.getResponseFromTwilio,
   (req, res) => {
+      console.log('Called')
+      console.log('Called')
+      console.log('Called')
+      console.log('Called')
     res.status(200).json(req.body);
   }
 );
