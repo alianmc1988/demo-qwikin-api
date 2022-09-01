@@ -131,13 +131,14 @@ class EventController {
 
   static async getResponseFromTwilio(req, _, next) {
     console.log(req);
+    console.log(req.params);
     const { Body, From } = req.body;
     console.log(Body, From);
 
-    console.log('TESTING')
-    console.log(req.body)
-    console.log(req.data)
-    console.log(req.params)
+    console.log("TESTING");
+    console.log(req.body);
+    console.log(req.data);
+    console.log(req.params);
 
     const eventFounded = db.events.find((event) => event.phoneNumber === From);
 
