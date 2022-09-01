@@ -71,14 +71,15 @@ class EventController {
 
   static async create(req, _, next) {
     const { id } = req.params;
-
-    const eventFounded = db.events.find((event) => event.id === id);
+    console.log("The id: ", id);
+    const eventFounded = db.events.find((event) => event.id == id);
     console.log(eventFounded);
     // Send message to customer
     const customerPhoneNumbers = eventFounded.phoneNumber;
     const message =
       messagesResponses[1].message || "Thank you for checking in our condo";
     let response;
+
     console.log(customerPhoneNumbers);
     try {
       response = await TwilioService.sendSMS({
@@ -88,8 +89,6 @@ class EventController {
     } catch (error) {
       console.log("Error in sending message", error.message);
     }
-
-    eventFounded["score"] = req.body.score || 0;
     console.log(response);
     req.body = { ...req.body, twilioResponse: response, eventFounded };
     next();
