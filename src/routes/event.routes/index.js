@@ -9,13 +9,13 @@ router.post("/checkin/pass/:id", EventController.create, (req, res) => {
 router.post("/checkin/create-pass", EventController.checkinPass);
 
 router.post(
-  "/checkin/response-twilio",
+  "/checkin/response-twilio/:Body/:From",
   EventController.getResponseFromTwilio,
   (req, res) => {
-      console.log('Called')
-      console.log('Called')
-      console.log('Called')
-      console.log('Called')
+    console.log("Called");
+    console.log("Called");
+    console.log("Called");
+    console.log("Called");
     res.status(200).json(req.body);
   }
 );

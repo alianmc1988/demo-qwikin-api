@@ -19,5 +19,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.19",
     "twilio": "^3.80.1"
+  },
+  "devDependencies": {
+    "ngrok": "^4.3.3"
   }
 }
