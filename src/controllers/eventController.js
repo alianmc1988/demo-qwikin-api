@@ -3,17 +3,13 @@ const Event = require("../entities/Event");
 const Customer = require("../entities/Customer");
 const { EventService, CustomerService, TwilioService } = require("../services");
 const { messagesResponses } = require("../constants");
-const Pass = require("../entities/PassEntity");
+// const Pass = require("../entities/PassEntity");
 const db = require("../database/database.json");
-const RaitingsEntity = require("../entities/RatingEntity");
+// const RaitingsEntity = require("../entities/RatingEntity");
 
 class EventController {
-  static async getAll(req, _, next) {
-    const response = await EventService.getAll();
-    if (response.error) {
-      next(response.error);
-    }
-    req.body = response;
+  static getAll(req, _, next) {
+    req.body = db.events;
     next();
   }
 
@@ -78,7 +74,7 @@ class EventController {
     const customerPhoneNumbers = eventFounded.phoneNumber;
     const message =
       messagesResponses[1].message || "Thank you for checking in our condo";
-    let response;
+    let response = {};
 
     console.log(customerPhoneNumbers);
     try {
@@ -135,9 +131,8 @@ class EventController {
     console.log("==========================TESTING==========================");
     console.log("The body from Twilio: ", Body, "The Sender", From);
 
-    const event = db.events;
     const twiml = new MessagingResponse();
-    const eventFounded = event.find((event) => event.phoneNumber === From);
+    const eventFounded = db.events.find((event) => event.phoneNumber == From);
 
     console.log("The event founded: ", eventFounded);
     const raiting = {
@@ -149,10 +144,12 @@ class EventController {
     };
 
     console.log("The raiting: ", raiting);
+
+    console.log("The raiting: ", raiting);
     db.ratings.push(raiting);
     console.log("raitings table", db.ratings);
     twiml.message(messagesResponses[2].message);
-    res.send(twiml.toString());
+    res.status(200).send(twiml.toString());
   }
 }
 
