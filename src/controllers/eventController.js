@@ -1,11 +1,8 @@
 const MessagingResponse = require("twilio").twiml.MessagingResponse;
 const Event = require("../entities/Event");
-const Customer = require("../entities/Customer");
-const { EventService, CustomerService, TwilioService } = require("../services");
+const { EventService, TwilioService } = require("../services");
 const { messagesResponses } = require("../constants");
-// const Pass = require("../entities/PassEntity");
 const db = require("../database/database.json");
-// const RaitingsEntity = require("../entities/RatingEntity");
 
 class EventController {
   static getAll(req, _, next) {
@@ -23,48 +20,6 @@ class EventController {
     next();
   }
 
-  // static async create(req, _, next) {
-  //   const { time, condo, unit, staff, gate, score } = req.body;
-  //   let { customer } = req.body;
-
-  //   const customerObj = new Customer(customer);
-
-  //   const customerCreated = await CustomerService.create(customerObj);
-  //   customer = customerCreated.id;
-  //   const event = new Event({
-  //     time,
-  //     condo,
-  //     unit,
-  //     staff,
-  //     gate,
-  //     score,
-  //     customer,
-  //   });
-  //   const eventCreated = await EventService.create(event);
-  //   if (eventCreated.error) {
-  //     next(eventCreated.error);
-  //   }
-
-  //   // Send message to customer
-  //   const customerPhoneNumbers = customerCreated.name.phone;
-  //   const message =
-  //     messagesResponses[1].message || "Thank you for checking in our condo";
-  //   let response;
-  //   console.log(customerPhoneNumbers);
-  //   try {
-  //     response = await TwilioService.sendSMS({
-  //       to: customerPhoneNumbers,
-  //       body: message,
-  //     });
-  //   } catch (error) {
-  //     console.log("Error in sending message", error.message);
-  //   }
-  //   console.log(response);
-  //   req.body = eventCreated;
-  //   req.body = { ...req.body, twilioResponse: response };
-  //   next();
-  // }
-
   static async create(req, _, next) {
     const { id } = req.params;
     console.log("The id: ", id);
@@ -74,7 +29,6 @@ class EventController {
     const customerPhoneNumbers = eventFounded.phoneNumber;
     const message =
       messagesResponses[1].message || "Thank you for checking in our condo";
-    let response = {};
 
     console.log(customerPhoneNumbers);
     try {
