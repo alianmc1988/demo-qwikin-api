@@ -5,7 +5,6 @@ router.post("/checkin/pass/:id", EventController.create, (req, res) => {
   res.status(201).json(req.body);
 });
 
-// Get what twilio sends
 router.post("/checkin/create-pass", EventController.checkinPass);
 
 router.post("/checkin/response-twilio", EventController.getResponseFromTwilio);
